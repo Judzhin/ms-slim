@@ -1,7 +1,36 @@
 {
+    "name": "",
+    "description": "Some Description",
+    "version": "1.0.0",
+    "type": "application",
+    "description": "",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "framework",
+        "slim",
+        "zf2",
+        "docrine",
+        "phpunit",
+        "firephp"
+    ],
+    "authors": [{
+            "name": "Judzhin Miles",
+            "email": "info@msbios.com",
+            "homepage": "http://msbios.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "homepage": "http://msbios.com/",
     "require": {
+        "php": ">=5.3.0",
         "slim/slim": "2.*",
-        "doctrine/orm": "2.*"
+        "zendframework/zendframework": "2.3.*@dev",
+        "doctrine/orm": "2.*",
+        "phpunit/phpunit": "3.7.*"
+    },
+    "require-dev": {
+        "dogancelik/slim-json": "dev-master",
+        "firephp/firephp-core": "dev-master"
     },
     "autoload": {
         "psr-4": {

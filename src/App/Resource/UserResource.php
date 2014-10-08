@@ -4,6 +4,8 @@ namespace App\Resource;
 
 use App\AbstractResource;
 use App\Entity\User;
+use Slim\Slim;
+use Zend\View\Model\JsonModel;
 
 /**
  * Class Resource
@@ -12,9 +14,9 @@ use App\Entity\User;
 class UserResource extends AbstractResource {
 
     /**
-     * @param $id
-     *
-     * @return string
+     * 
+     * @param type $id
+     * @return JsonModel
      */
     public function get($id) {
         if ($id === null) {
@@ -22,18 +24,22 @@ class UserResource extends AbstractResource {
             $users = array_map(function($user) {
                 return $this->convertToArray($user);
             }, $users);
-            $data = json_encode($users);
+            $variables = $users;
         } else {
-            $data = $this->convertToArray($this->getEntityManager()->find('App\Entity\User', $id));
+            $variables = $this->convertToArray($this->getEntityManager()->find('App\Entity\User', $id));
         }
 
         // @TODO handle correct status when no data is found...
-
-        return json_encode($data);
+        return new JsonModel($variables);
     }
 
+    /**
+     * 
+     * @param type $id
+     * @return JsonModel
+     */
     public function put($id) {
-        $app = \Slim\Slim::getInstance();
+        $app = Slim::getInstance();
 
         $name = $app->request()->params('name');
         $email = $app->request()->params('email');
@@ -52,11 +58,10 @@ class UserResource extends AbstractResource {
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
 
-        return json_encode($this->convertToArray($user));
+        return new JsonModel($this->convertToArray($user));
     }
 
     // POST, PUT, DELETE methods...
-
     private function convertToArray(User $user) {
         return array(
             'id' => $user->getId(),

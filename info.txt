@@ -1,0 +1,7 @@
+php -S 0.0.0.0:8888 -t ./ ./index.php
+
+curl -i -X GET 0.0.0.0:8888/users/1
+curl -i -X GET 0.0.0.0:8888/users
+curl -i -X POST -d "email=foo2@bar&name=baz2" 0.0.0.0:8888/users
+curl -i -X PUT -d "email=foo@bar&name=baz" 0.0.0.0:8888/users/10
+curl -i -X DELETE 0.0.0.0:8888/users/1

@@ -3,6 +3,9 @@
 /**
  * @author Judzhin Miles <info@msbios.com> 
  */
+
+ini_set('display_errors', true);
+
 if (file_exists('vendor/autoload.php')) {
     $loader = include 'vendor/autoload.php';
 }
